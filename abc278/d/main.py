@@ -29,8 +29,24 @@ def fib(n):
 
 
 def main():
-    [N, M] = read_space_separated_ints()
-    print(N + M)
+    N = read_n()
+    A = read_space_separated_ints()
+    Q = read_n()
+    base = 0
+    changed_indexes = set(range(N))
+    for _ in range(Q):
+        query = read_space_separated_ints()
+        if query[0] == 1:
+            base = query[1]
+            for i in changed_indexes:
+                A[i] = 0
+            changed_indexes = set()
+        elif query[0] == 2:
+            i, x = query[1:]
+            A[i-1] += x
+            changed_indexes.add(i-1)
+        elif query[0] == 3:
+            print(base + A[query[1]-1])
 
 
 if __name__ == "__main__":
