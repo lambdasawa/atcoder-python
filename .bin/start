@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -xeuo pipefail
+
+code main.py
+
+contest=$(basename "$(dirname "$PWD")" "$(git rev-parse --show-toplevel)")
+task=$(basename "$PWD")
+open "$(printf https://atcoder.jp/contests/%s/tasks/%s_%s "$contest" "$contest" "$task")"
