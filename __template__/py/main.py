@@ -1,15 +1,33 @@
 # https://docs.python.org/ja/3/library/
-from itertools import count, cycle, repeat, takewhile, dropwhile, groupby, product, permutations, combinations
-from functools import lru_cache, reduce
+# https://docs.python.org/ja/3/library/stdtypes.html#string-methods
+# https://docs.python.org/ja/3/library/stdtypes.html#lists
+# https://docs.python.org/ja/3/library/stdtypes.html#set
+# https://docs.python.org/ja/3/library/stdtypes.html#dict
+
 from pprint import PrettyPrinter
+
+# https://docs.python.org/ja/3/library/itertools.html
+from itertools import count, cycle, repeat, takewhile, dropwhile, groupby, product, permutations, combinations
+
+# https://docs.python.org/ja/3/library/functools.html
+from functools import lru_cache, reduce
+
+# https://docs.python.org/ja/3/library/collections.html
 from collections import Counter, namedtuple, deque
-import math
+
+# https://docs.python.org/ja/3/library/heapq.html
+from heapq import heapify, heappop, heappush
+
+# https://docs.python.org/ja/3/library/math.html
+from math import factorial
+
+# https://docs.python.org/ja/3/library/re.html
 import re
 
 pp = PrettyPrinter(indent=2)
 
 
-def read_n():
+def read_int():
     return int(input())
 
 
@@ -19,13 +37,6 @@ def read_space_separated_ints():
 
 def read_int_table(length):
     return [read_space_separated_ints() for x in range(length)]
-
-
-@lru_cache(maxsize=None)
-def fib(n):
-    if n < 2:
-        return n
-    return fib(n-1) + fib(n-2)
 
 
 def main():
