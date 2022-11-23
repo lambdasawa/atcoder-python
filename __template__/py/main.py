@@ -24,7 +24,10 @@ from math import factorial
 # https://docs.python.org/ja/3/library/re.html
 import re
 
+import sys
+
 pp = PrettyPrinter(indent=2)
+sys.setrecursionlimit(1000000)
 
 
 def read_int():
