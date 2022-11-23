@@ -29,8 +29,10 @@ def fib(n):
 
 
 def main():
-    [N, M] = read_space_separated_ints()
-    print(N + M)
+    [N, K] = read_space_separated_ints()
+    A = input().split(" ")
+    answer = A[K:] + ["0"] * min(K, N)
+    print(" ".join(answer))
 
 
 if __name__ == "__main__":

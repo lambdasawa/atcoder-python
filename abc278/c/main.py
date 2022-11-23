@@ -29,8 +29,23 @@ def fib(n):
 
 
 def main():
-    [N, M] = read_space_separated_ints()
-    print(N + M)
+    [N, Q] = read_space_separated_ints()
+    TAB = [read_space_separated_ints() for i in range(Q)]
+
+    follow = {}
+
+    for [t, a, b] in TAB:
+        if t == 1:  # follow
+            follow[a, b] = True
+        if t == 2:  # remove
+            follow.pop((a, b), None)
+        if t == 3:  # query
+            if follow.get((a, b), False) and follow.get((b, a), False):
+                print("Yes")
+            else:
+                print("No")
+        else:
+            pass
 
 
 if __name__ == "__main__":

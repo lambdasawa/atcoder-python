@@ -28,9 +28,31 @@ def fib(n):
     return fib(n-1) + fib(n-2)
 
 
+def valid_hm(h, m):
+    a = h // 10
+    b = h % 10
+    c = m // 10
+    d = m % 10
+
+    rotate_h = a * 10 + c
+    rotate_m = b * 10 + d
+
+    return rotate_h < 24 and rotate_m < 60
+
+
 def main():
-    [N, M] = read_space_separated_ints()
-    print(N + M)
+    [h, m] = read_space_separated_ints()
+
+    sec = h*60+m
+    while True:
+        current_h = (sec // 60) % 24
+        current_m = sec % 60
+
+        if current_h < 24 and current_m < 60 and valid_hm(current_h, current_m):
+            print(current_h, current_m)
+            return
+
+        sec += 1
 
 
 if __name__ == "__main__":
