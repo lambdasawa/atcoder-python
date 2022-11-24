@@ -199,3 +199,54 @@ def fib(n):
 
 # memoize
 assert fib(100) == 354224848179261915075
+
+
+class UnionFind():
+    def __init__(self, n):
+        self._parent = [-1] * n
+        self._rank = [0] * n
+        self._size = [1] * n
+
+    def root(self, x):
+        if self._parent[x] == -1:
+            return x
+        else:
+            self._parent[x] = self.root(self._parent[x])
+            return self._parent[x]
+
+    def same(self, x, y):
+        return self.root(x) == self.root(y)
+
+    def unite(self, x, y):
+        rx = self.root(x)
+        ry = self.root(y)
+
+        if rx == ry:
+            return False
+
+        if self._rank[rx] < self._rank[ry]:
+            rx, ry = ry, rx
+        self._parent[ry] = rx
+
+        if self._rank[rx] == self._rank[ry]:
+            self._rank[rx] += 1
+        self._size[rx] += self._size[ry]
+
+        # pp.pprint([x, y, self._parent, self._rank, self._size])
+
+        return True
+
+    def size(self, x):
+        return self._size[self.root(x)]
+
+    def group(self, x):
+        return [i for i in range(len(self._parent)) if self.same(i, x)]
+
+
+uf = UnionFind(10)
+uf.unite(2, 3)
+uf.unite(3, 4)
+uf.unite(6, 5)
+uf.unite(7, 5)
+uf.unite(7, 2)
+assert uf.group(6) == [2, 3, 4, 5, 6, 7]
